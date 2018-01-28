@@ -24,6 +24,7 @@ pub fn raster_glyphs<'a>(height: f32, font: &'a Font<'a>) {
 
     for g in glyphs {
         if let Some(bb) = g.pixel_bounding_box() {
+            println!("Working: {:?}", g.id());
             let h = 2u32.pow((height as f32).log2().ceil() as u32);
             let capacity = h * h;
             let mut img = Vec::with_capacity(capacity as usize);
@@ -52,6 +53,6 @@ fn main() {
     let font = Vec::from(include_bytes!("DejaVuSans.ttf") as &[u8]);
     let font = FontCollection::from_bytes(font).into_font().unwrap();
 
-    let height = 12.4;
+    let height = 1024.0;
     let _ = raster_glyphs(height, &font);
 }
